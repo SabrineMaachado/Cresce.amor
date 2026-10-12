@@ -7,3 +7,4 @@ Marketplace de produtos infantis usados e seminovos (roupas, calçados, brinqued
 Fase atual: **definição funcional do produto**. Ainda não há código.
 
 - [Planejamento funcional (MVP)](docs/planejamento-funcional.md)
+- [Estudo: como o Enjoei trabalha](docs/estudo-enjoei.md)
