@@ -2,7 +2,7 @@
 
 > O amor fica. A roupa segue.
 
-Marketplace de roupas infantis usadas e seminovas (0 a 7 anos), em que as próprias famílias anunciam e vendem.
+Marketplace de produtos infantis usados e seminovos (roupas, calçados, brinquedos, livros e outros itens para crianças de 0 a 6 anos), em que as próprias famílias anunciam e vendem.
 
 Fase atual: **definição funcional do produto**. Ainda não há código.
 

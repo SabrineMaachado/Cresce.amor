@@ -1,6 +1,16 @@
 # Cresce, Amor | Planejamento funcional do MVP
 
-> Versão 0.1, outubro de 2026. Documento de trabalho: as recomendações marcadas como **[decidir]** precisam de confirmação antes de virar código.
+> Versão 0.2, outubro de 2026. Documento de trabalho: as recomendações marcadas como **[decidir]** precisam de confirmação antes de virar código.
+
+## Decisões já tomadas
+
+| Data | Decisão | Onde está detalhada |
+|---|---|---|
+| 12/10/2026 | Só **pessoas físicas** vendem. | P2, D1 |
+| 12/10/2026 | Escopo ampliado: **todo o universo infantil de 0 a 6 anos** (roupas, calçados, brinquedos, livros, enxoval, acessórios e itens de passeio), não só roupas. | P3, D13 |
+| 12/10/2026 | Frete pelos **Correios**, com a opção de **frete grátis** (pago pelo vendedor) ou **frete pago pelo comprador** na hora da compra. | D4 |
+| 12/10/2026 | Comissão por **nível de visibilidade**: Grátis (0%, limitado a 3 produtos), Clássica (5%), Megafone (8%) e Outdoor (10%). | D12 |
+| pendente | Pagamento intermediado com retenção. | D2 |
 
 ## Sumário
 
@@ -28,8 +38,8 @@
 
 | Lado | Dor | O que o produto precisa resolver |
 |---|---|---|
-| Família que vende | Roupa perde o uso em poucos meses; vender em grupos e brechós dá trabalho, exige negociação e expõe a família. | Anunciar rápido, não negociar com desconhecidos, receber com segurança, enviar sem complicação. |
-| Família que compra | Roupa infantil nova é cara e dura pouco; usado tem risco de "chegar diferente da foto". | Encontrar o tamanho certo rápido, confiar no estado descrito, ter a quem recorrer se der errado. |
+| Família que vende | Roupas, brinquedos e acessórios perdem o uso em poucos meses; vender em grupos e brechós dá trabalho, exige negociação e expõe a família. | Anunciar rápido, não negociar com desconhecidos, receber com segurança, enviar sem complicação. |
+| Família que compra | Produto infantil novo é caro e dura pouco; usado tem risco de "chegar diferente da foto". | Encontrar o tamanho ou a faixa de idade certa rápido, confiar no estado descrito, ter a quem recorrer se der errado. |
 | Plataforma | Marketplace só funciona com oferta e procura ao mesmo tempo. | Gerar confiança dos dois lados e manter o custo de cada transação viável. |
 
 ### Três tensões que moldam todo o produto
@@ -37,6 +47,7 @@
 1. **Ticket baixo × frete alto.** Uma peça usada costuma custar pouco, e o frete de uma única peça pode custar quase o mesmo que ela. Se isso não for tratado, a compra deixa de fazer sentido. Consequência direta no desenho: **incentivar várias peças do mesmo vendedor em um único envio** (carrinho agrupado por vendedor, frete único por vendedor, venda de lotes).
 2. **Peça única.** Cada anúncio é, em geral, uma peça só. Isso exige reserva, controle de concorrência no checkout e remoção automática do anúncio vendido. Não existe "estoque" no sentido de loja.
 3. **Confiança entre desconhecidos.** A plataforma precisa segurar o dinheiro até a peça chegar (ou até um prazo), padronizar a descrição do estado de conservação e ter um caminho claro para "recebi diferente do anunciado".
+4. **Itens grandes e itens de segurança.** Com o escopo ampliado para todo o universo infantil, entram produtos que os Correios não transportam (por peso ou tamanho, como berço e alguns carrinhos) e produtos em que o uso anterior afeta a segurança da criança (cadeirinha de carro, berço, chupeta). Isso exige regras próprias por categoria (ver D13).
 
 ### O problema do começo (oferta antes da procura)
 
@@ -44,7 +55,7 @@ Um catálogo vazio afasta compradores; sem compradores, vendedores desistem. Rec
 
 - Começar com **oferta curada**: convidar um grupo inicial de famílias para anunciar antes da abertura ao público.
 - Considerar **recorte geográfico inicial** (uma cidade ou região), o que concentra frete mais barato e facilita a divulgação boca a boca. **[decidir]**
-- Focar a descoberta em **tamanho**: a primeira pergunta de quem compra roupa infantil é "o que serve no meu filho agora?".
+- Focar a descoberta em **tamanho e faixa de idade**: a primeira pergunta de quem compra para criança é "o que serve no meu filho agora?".
 
 ---
 
@@ -53,18 +64,18 @@ Um catálogo vazio afasta compradores; sem compradores, vendedores desistem. Rec
 | # | Premissa | Status | O que depende dela | Como confirmar |
 |---|---|---|---|---|
 | P1 | É marketplace, não loja própria. | Firme | Todo o modelo de pedidos, repasses e responsabilidade. | Já decidido. |
-| P2 | Famílias (pessoa física) anunciam e vendem. | **Confirmar** | Cadastro (CPF), forma de recebimento, obrigações fiscais da plataforma sobre a comissão, limites de volume por vendedor. | Conversa com contador sobre a comissão e com advogado sobre termos de uso. Definir se brechós e lojistas (CNPJ) entram ou não. |
-| P3 | Foco em roupas de 0 a 7 anos. | **Confirmar recorte** | Grade de tamanhos, categorias, filtros. | Decidir se calçados, acessórios e enxoval entram no MVP (recomendação: só roupas + calçados). |
+| P2 | Famílias (pessoa física) anunciam e vendem. | **Confirmado**: só pessoa física | Cadastro (CPF), forma de recebimento, obrigações fiscais da plataforma sobre a comissão, limites de volume por vendedor. | Falta conversar com contador sobre a comissão e com advogado sobre termos de uso. Brechós e lojistas (CNPJ) ficam fora. |
+| P3 | Produtos do universo infantil, de 0 a 6 anos. | **Confirmado** (ampliado) | Categorias, grade de tamanhos e faixas de idade, filtros, regras de segurança e de envio por categoria. | Validar a lista de categorias e as regras de D13. |
 | P4 | Produtos usados ou seminovos. | **Confirmar** | Escala de estado de conservação; se peças novas com etiqueta são aceitas (recomendação: sim, como um dos estados). | Decisão de produto. |
 | P5 | Cada vendedor cadastra suas peças. | Firme | Painel do vendedor. | — |
 | P6 | Compradores compram de diferentes vendedores. | **Confirmar formato** | Carrinho, checkout, frete, divisão do pagamento. | Ver decisão D3. |
 | P7 | Plataforma transmite confiança aos dois lados. | Firme como objetivo, **define custo** | Pagamento intermediado com retenção, política de problemas, moderação, avaliações. | Ver decisões D2, D6 e D9. |
 | P8 | Site responsivo, com app no futuro. | Firme | Arquitetura com API separada da interface desde o início. | — |
 | P9 | **(implícita)** A plataforma processa o pagamento. | **Confirmar com urgência** | Tudo que envolve dinheiro: checkout, repasse, comissão, reembolso. | Escolha do provedor de pagamento (D2). É a decisão que mais trava o resto. |
-| P10 | **(implícita)** A plataforma organiza o frete. | **Confirmar com urgência** | Cálculo de frete, etiqueta, rastreio, prazos de postagem. | Escolha do modelo logístico (D4). |
-| P11 | **(implícita)** Há receita por comissão. | **Confirmar** | Cálculo do repasse, tela financeira do vendedor. | Definir percentual e se há taxa fixa por venda. |
+| P10 | **(implícita)** A plataforma organiza o frete. | **Confirmado**: Correios, com frete grátis ou pago pelo comprador | Cálculo de frete, etiqueta, rastreio, prazos de postagem. | Falta escolher a forma de integração com os Correios (D4). |
+| P11 | **(implícita)** Há receita por comissão. | **Confirmado**: comissão por nível de visibilidade | Cálculo do repasse, tela financeira do vendedor, ordenação da busca. | Falta definir o que cada nível entrega e como funciona o nível Grátis (D12). |
 
-**Bloqueadoras** (nada de checkout, pedido ou financeiro antes delas): P2, P9, P10, P11.
+**Bloqueadora que ainda falta:** P9 (pagamento). Nada de checkout, pedido ou financeiro antes dela.
 
 ---
 
@@ -76,6 +87,10 @@ Um catálogo vazio afasta compradores; sem compradores, vendedores desistem. Rec
 **Regra:** o vendedor não pode comprar o próprio anúncio.
 
 ### D2. Pagamento intermediado com retenção
+**Em palavras simples:** o comprador paga à plataforma, não ao vendedor. A plataforma guarda o dinheiro enquanto a peça viaja e só repassa ao vendedor quando a peça chega e está como anunciada. Se não chegar ou chegar diferente, o dinheiro volta ao comprador. Funciona como um "cofre de confiança" entre duas famílias que não se conhecem.
+
+**Exemplo:** Ana compra um macacão de R$ 40 da Bia, com frete de R$ 22. Ana paga R$ 62 por Pix. A Bia é avisada, posta pelos Correios, Ana recebe e confirma. Só então a Bia recebe R$ 38 (R$ 40 menos 5% de comissão no nível Clássica). Se Ana não confirmar nem reclamar em 7 dias após a entrega, o valor é liberado do mesmo jeito.
+
 **Recomendação:** usar um provedor de pagamentos com **divisão automática do valor** entre plataforma e vendedor e **retenção até a liberação** (subcontas para o vendedor). O dinheiro do comprador fica retido e só é liberado ao vendedor quando:
 - o comprador confirma o recebimento, **ou**
 - passa um prazo após a entrega registrada sem abertura de problema (sugestão: 7 dias). **[decidir prazo]**
@@ -84,6 +99,7 @@ Um catálogo vazio afasta compradores; sem compradores, vendedores desistem. Rec
 **Alternativa descartada para o MVP:** classificados (comprador paga direto ao vendedor). Mais simples, mas elimina a proteção ao comprador e a receita por comissão fica difícil de cobrar.
 **Implicação:** o vendedor precisa passar pela verificação de identidade exigida pelo provedor (CPF, dados bancários ou chave Pix). Isso entra na jornada de venda.
 **Métodos no MVP:** Pix e cartão de crédito. Boleto fica para depois (demora a compensar e complica a reserva da peça).
+**Taxa do provedor:** os provedores cobram uma tarifa por transação, em geral menor no Pix e maior no cartão. Essa tarifa sai da comissão da plataforma ou é repassada ao vendedor? **[decidir]** Com comissões de 0% a 10% (D12), absorver a tarifa pode deixar vendas no prejuízo, principalmente no nível Grátis e no cartão. Recomendação: a plataforma absorve a tarifa do Pix e o valor do cartão é tratado na simulação financeira antes do lançamento.
 
 ### D3. Carrinho com vários vendedores, fechamento por vendedor
 **Recomendação para o MVP:** o carrinho aceita peças de vendedores diferentes, mas **aparece agrupado por vendedor**, e cada grupo é fechado em um checkout próprio, gerando **um pedido por vendedor**.
@@ -91,11 +107,27 @@ Um catálogo vazio afasta compradores; sem compradores, vendedores desistem. Rec
 **Evolução:** pagamento único para vários vendedores fica para depois, se os dados mostrarem que compradores fecham com muitos vendedores ao mesmo tempo.
 **Incentivo:** destacar "mais peças deste vendedor no seu tamanho" para aproveitar o mesmo frete.
 
-### D4. Frete por etiqueta gerada pela plataforma
-**Recomendação:** integrar com uma plataforma de cotação e emissão de etiquetas que agregue transportadoras (incluindo Correios). Na compra, o comprador vê as opções com preço e prazo; após o pagamento, o vendedor recebe a **etiqueta pronta** para imprimir e postar.
+### D4. Frete pelos Correios, com etiqueta gerada pela plataforma
+**Decidido:** envio pelos Correios (PAC e SEDEX). Na compra, o comprador vê as opções com preço e prazo; após o pagamento, o vendedor recebe a **etiqueta pronta** para imprimir e postar.
+**Forma de integração [decidir]:**
+- **Contrato direto da plataforma com os Correios:** exige CNPJ da plataforma e contrato comercial; dá acesso às tabelas de contrato.
+- **Por um intermediador de etiquetas** que emite etiquetas dos Correios: começa mais rápido, sem contrato próprio, e já entrega cotação, etiqueta e rastreio prontos.
+Recomendação: começar pelo intermediador e avaliar o contrato direto quando o volume justificar.
 **Por quê:** o vendedor não precisa calcular nada, o rastreio entra no sistema automaticamente e a plataforma sabe quando a peça foi postada e entregue (o que alimenta a liberação do pagamento).
-**Dado necessário:** peso e dimensões do pacote. Para não pedir isso a cada anúncio, usar **pacotes padrão por categoria** (ex.: "body/camiseta", "conjunto", "casaco", "calçado") e somar para vários itens, com teto por envio.
-**Opcional para o MVP:** "entrega em mãos" para o recorte geográfico inicial. Recomendação: **não incluir** no MVP, porque não gera comprovante de entrega e enfraquece a proteção do comprador. **[decidir]**
+**Dado necessário:** peso e dimensões do pacote. Para não pedir isso a cada anúncio, usar **pacotes padrão por categoria** (ex.: "body/camiseta", "conjunto", "casaco", "calçado", "brinquedo pequeno", "brinquedo médio") e somar para vários itens, com teto por envio.
+**Limites dos Correios:** há limite de peso e de tamanho por pacote. Produtos que não cabem nesse limite (berço, alguns carrinhos e cercadinhos) **não entram no MVP** ou exigem outra forma de entrega (ver D13).
+
+**Quem paga o frete (decidido: duas opções):**
+- **Frete pago pelo comprador:** o valor cotado é somado ao total na hora da compra.
+- **Frete grátis:** o comprador não paga frete; o custo é **descontado do valor que o vendedor recebe**.
+
+**Como o vendedor oferece frete grátis [decidir]:**
+- **Por anúncio:** o vendedor marca "frete grátis" ao publicar; o anúncio ganha selo e filtro próprio na busca.
+- **Por valor de pedido:** o vendedor define "frete grátis em pedidos acima de R$ X", o que estimula a compra de várias peças dele.
+Recomendação: oferecer as duas. Num pedido com várias peças do mesmo vendedor, o frete é grátis se **todas** forem de frete grátis ou se o pedido passar do valor definido; senão, o comprador paga um frete único pelo pacote.
+**Proteção do vendedor:** ao marcar frete grátis, o vendedor vê uma estimativa do frete e quanto vai sobrar para ele. O sistema não permite frete grátis quando a estimativa for maior que o valor a receber. O frete grátis só vale para regiões cujo frete estimado caiba nesse limite; fora disso, o comprador vê o frete cobrado. **[validar]**
+
+**Entrega em mãos:** fora do MVP, porque não gera comprovante de entrega e enfraquece a proteção do comprador.
 
 ### D5. Um anúncio = uma peça (ou um lote fechado)
 - Quantidade sempre 1.
@@ -107,8 +139,9 @@ Um catálogo vazio afasta compradores; sem compradores, vendedores desistem. Rec
 **Recomendação:** os **primeiros anúncios de cada vendedor novo** (sugestão: os 3 primeiros) passam por **análise antes de publicar**; depois disso, publicação imediata com **análise posterior** e botão "denunciar" para qualquer usuário.
 **Por quê:** filtra o grosso dos problemas sem criar fila permanente para a equipe.
 
-### D7. Tamanho como eixo principal
-- **Grade padronizada obrigatória:** Prematuro, RN, 0–3m, 3–6m, 6–9m, 9–12m, 12–18m, 18–24m, 2, 3, 4, 5, 6, 7, 8 anos. (O 8 cobre crianças de 7 anos que já usam numeração maior.) **[validar grade]**
+### D7. Tamanho e faixa de idade como eixo principal
+- **Roupas — grade padronizada obrigatória:** Prematuro, RN, 0–3m, 3–6m, 6–9m, 9–12m, 12–18m, 18–24m, 2, 3, 4, 5, 6, 8 anos. (O 8 cobre crianças de 6 anos que já usam numeração maior.) **[validar grade]**
+- **Demais categorias — faixa de idade indicada:** 0–6 meses, 6–12 meses, 1–2 anos, 2–4 anos, 4–6 anos. Um produto pode ter mais de uma faixa. O filtro de idade da busca combina as duas coisas: escolher "2 anos" mostra roupas tamanho 2 e brinquedos da faixa 2–4.
 - **Tamanho da etiqueta** (texto livre opcional), porque marcas variam.
 - **Medidas opcionais** (comprimento, largura de peito, cintura) com ícone de ajuda mostrando onde medir. Anúncios com medidas ganham selo "com medidas".
 - Calçados: numeração brasileira.
@@ -125,6 +158,10 @@ Escala fechada, com descrição visível para quem anuncia e para quem compra:
 | Usado, com detalhe | Possui um detalhe pontual (pequena mancha, costura a refazer). **Foto do detalhe obrigatória.** |
 
 Peças rasgadas, com mancha grande, mofo ou odor não são aceitas.
+
+Para brinquedos, livros e itens com partes ou funcionamento, dois campos extras obrigatórios:
+- **Completo?** (sim / não, com lista do que falta).
+- **Funcionando?** (sim / não se aplica). Item que não funciona não é aceito.
 
 ### D9. Avaliações
 **MVP:** o comprador avalia o pedido (nota de 1 a 5 e comentário opcional) depois que ele é concluído. A nota média e o número de vendas aparecem no perfil do vendedor.
@@ -143,6 +180,48 @@ Bloqueio automático de telefone, e-mail e links nas mensagens, para manter a tr
 - **Proibido** foto com criança identificável (rosto). Peça vestida só sem rosto, ou peça estendida/em cabide. Regra clara no cadastro e motivo de reprovação na moderação.
 - Remoção automática dos metadados das fotos (inclui localização).
 - Nunca pedir nome ou idade da criança. Se no futuro houver "perfil do filho" para recomendações de tamanho, guardar só faixa de tamanho, não data de nascimento. Revisar com advogado à luz da LGPD.
+
+### D12. Comissão por nível de visibilidade
+**Decidido:** o vendedor escolhe, em cada anúncio, um nível de visibilidade. Quanto mais visibilidade, maior a comissão cobrada **sobre o preço da peça** (o frete não entra na conta).
+
+| Nível | Comissão | Limite | O que entrega (proposta **[decidir]**) |
+|---|---|---|---|
+| Grátis | 0% | 3 produtos | Aparece na busca e nas categorias normalmente, sem destaque. |
+| Clássica | 5% | sem limite | Igual ao Grátis, sem limite de anúncios. |
+| Megafone | 8% | sem limite | Aparece antes dos anúncios Grátis e Clássica nos resultados de busca e categoria, com selo de destaque. |
+| Outdoor | 10% | sem limite | Tudo do Megafone, mais vitrine na página inicial e nas páginas de categoria. |
+
+**Regras propostas:**
+- O nível é escolhido ao publicar e pode ser **aumentado** a qualquer momento. Diminuir também é permitido, mas só vale para vendas futuras.
+- A comissão cobrada é a do nível **ativo no momento do pagamento** e fica gravada no pedido.
+- Anúncios em destaque são **sinalizados** como destaque para o comprador (transparência), e os resultados continuam respeitando os filtros escolhidos.
+- Para o destaque não virar bagunça, dentro de cada nível a ordem segue o critério escolhido pelo comprador (mais recentes, menor preço etc.).
+
+**O que precisa ser esclarecido no nível Grátis [decidir]:**
+- **Opção A — 3 anúncios ativos ao mesmo tempo:** o vendedor pode ter até 3 anúncios Grátis publicados; quando um vende, libera a vaga para outro. Atrai quem tem poucas peças e quer testar.
+- **Opção B — 3 vendas sem comissão por conta:** as 3 primeiras vendas de cada vendedor são isentas; depois, todo anúncio passa a ser Clássica ou acima. Funciona como boas-vindas.
+Recomendação: **opção B**. A opção A permite vender sem comissão para sempre, rodando 3 anúncios por vez, e a plataforma ainda paga a tarifa do provedor de pagamento nessas vendas.
+
+**Ponto de atenção:** com comissões entre 0% e 10%, a receita por venda é pequena, e a tarifa do provedor de pagamento (D2) sai dela. Recomendação: fazer uma simulação simples (preço médio esperado × comissão − tarifa) antes do lançamento.
+
+### D13. Categorias do universo infantil e regras por tipo de produto
+**Decidido:** o catálogo cobre o universo infantil de 0 a 6 anos. Proposta de categorias e regras **[validar]**:
+
+| Categoria | Exemplos | No MVP? | Regra especial |
+|---|---|---|---|
+| Roupas | bodies, macacões, conjuntos, vestidos, casacos, pijamas | Sim | Grade de tamanho obrigatória. Roupa íntima usada não é aceita. |
+| Calçados | tênis, sandálias, sapatinhos | Sim | Numeração brasileira. |
+| Acessórios de vestir | bonés, toucas, meias, laços | Sim | Meia usada só em lote higienizado ou nova **[decidir]**. |
+| Brinquedos | pelúcias, blocos, brinquedos educativos | Sim | Completo e funcionando (D8). Foto do selo do Inmetro quando houver. Brinquedos com pilha: informar se acompanha. |
+| Livros | livros de pano, de banho, infantis | Sim | Páginas completas, sem rasgos. |
+| Enxoval | mantas, lençóis de berço, toalhas, saquinhos | Sim | Sem mancha. |
+| Passeio | carrinhos compactos, bolsas de maternidade, slings | Só os que cabem no limite dos Correios | Carrinho: informar se freios e travas funcionam; foto do mecanismo. |
+| Alimentação | pratinhos, copos, babadores | Sim, com restrição | Mamadeiras, bicos e chupetas **só novos e lacrados**. |
+| Higiene e banho | banheiras, redutores | Sim, com restrição | Itens de uso íntimo ou que vão à boca: só novos e lacrados. |
+| Segurança | cadeirinha de carro, bebê-conforto | **Não no MVP** | Exigem certificação do Inmetro e, usados, podem ter sofrido acidente sem dano visível. Recomendação: proibir. |
+| Móveis | berço, cercadinho, cadeirão | **Não no MVP** | Não cabem no limite dos Correios; berço também exige certificação. |
+
+Antes de abrir uma categoria com regra de segurança, **validar com advogado** a responsabilidade da plataforma pela revenda desses itens.
 
 ---
 
@@ -212,7 +291,7 @@ Legenda: 🔓 sem login · 🔐 exige login · ✅ validação · ⚠️ confirm
 | 2 | Ativar perfil de vendedor | Dados exigidos: nome completo, CPF, data de nascimento, telefone celular, endereço de postagem (origem do frete), dados de recebimento (conta bancária ou chave Pix no mesmo CPF). Nome público e cidade aparecem no perfil; o resto não. | ✅ CPF válido e único na plataforma ✅ maioridade (18+) ✅ celular confirmado por código ✅ **verificação do provedor de pagamento** (subconta aprovada) ⚠️ aceite das regras de venda (estado de conservação, prazos de postagem, comissão) | Verificação pendente: pode criar anúncios como rascunho, mas não publicar. Verificação recusada: explicar o motivo e o caminho. |
 | 3 | Cadastrar uma peça | Formulário guiado em etapas curtas. Rascunho salvo automaticamente. | 🔐 vendedor ativo | — |
 | 4 | Adicionar fotos | Mínimo 3 fotos (frente, costas, etiqueta), máximo 10. Foto obrigatória do detalhe quando o estado for "Usado, com detalhe". Dicas de luz e fundo na tela. | ✅ formato e tamanho de arquivo ✅ resolução mínima ✅ remoção de metadados ⚠️ declaração de que não há criança identificável na foto | Primeira foto vira capa; vendedor pode reordenar. |
-| 5 | Informar dados da peça | Categoria, tamanho (grade padronizada), tamanho da etiqueta, medidas (opcional), gênero/unissex, marca (lista com sugestão + "outra"), cor, estação, composição (opcional), estado de conservação (escala fechada), título, descrição, preço, pacote padrão para frete. Indicação do valor que o vendedor vai receber, já descontada a comissão. | ✅ campos obrigatórios ✅ preço entre mínimo e máximo da plataforma ✅ descrição obrigatória para "Usado, em bom estado" e "Usado, com detalhe" ✅ filtro de palavras proibidas e de contatos (telefone, e-mail, links) | Lote: informar quantidade de peças e garantir uma foto de cada. |
+| 5 | Informar dados da peça | Categoria, tamanho (grade padronizada), tamanho da etiqueta, medidas (opcional), gênero/unissex, marca (lista com sugestão + "outra"), cor, estação, composição (opcional), estado de conservação (escala fechada), título, descrição, preço, pacote padrão para frete, **nível de visibilidade** (Grátis, Clássica, Megafone, Outdoor) e **frete grátis ou pago pelo comprador**. Para categorias fora do vestuário: faixa de idade, completo e funcionando. Indicação do valor que o vendedor vai receber, já descontadas a comissão e, se for o caso, a estimativa de frete. | ✅ campos obrigatórios por categoria ✅ limite do nível Grátis ✅ frete grátis só se couber no valor a receber ✅ preço entre mínimo e máximo da plataforma ✅ descrição obrigatória para "Usado, em bom estado" e "Usado, com detalhe" ✅ filtro de palavras proibidas e de contatos (telefone, e-mail, links) | Lote: informar quantidade de peças e garantir uma foto de cada. |
 | 6 | Publicar o anúncio | Revisão final em formato de prévia. | ⚠️ "Confirmo que a descrição corresponde à peça" ✅ moderação prévia para os primeiros anúncios | Anúncio reprovado: motivo claro e possibilidade de corrigir e reenviar. |
 | 7 | Gerenciar anúncios | Lista com abas: Ativos, Em análise, Rascunhos, Pausados, Vendidos, Reprovados. Ações: editar, pausar, reativar, excluir, responder perguntas. | 🔐 | Anúncio **reservado** ou **vendido** não pode ser editado nem excluído. Editar preço ou fotos de anúncio ativo pode voltar à análise **[decidir]**. Anúncios sem atualização há muito tempo: lembrete para revisar ou baixar preço (depois do MVP). |
 | 8 | Receber uma venda | Notificação (e-mail e no site) com itens, prazo de postagem e etiqueta disponível. | ✅ só depois da confirmação do pagamento pelo provedor | O vendedor **não escolhe aceitar ou recusar**: se não puder enviar, cancela (o que conta contra a reputação). |
@@ -279,7 +358,8 @@ Pendente (pedido pago) ──pedido concluído──▶ Liberado ──provedor 
 - RN-10 Um anúncio corresponde a uma peça ou a um lote vendido junto; quantidade é sempre 1.
 - RN-11 Mínimo de 3 fotos; foto do detalhe obrigatória no estado "Usado, com detalhe".
 - RN-12 Proibidas fotos com criança identificável.
-- RN-13 Itens não aceitos: roupa íntima usada, peças rasgadas ou com mancha grande, mofo ou odor, falsificações, itens fora do escopo de roupas e calçados infantis. **[validar lista]**
+- RN-13 Itens não aceitos: roupa íntima usada, peças rasgadas ou com mancha grande, mofo ou odor, falsificações, itens que não funcionam, mamadeiras/bicos/chupetas usados, cadeirinhas de carro e bebê-conforto, móveis, itens que não cabem no limite dos Correios, produtos fora do universo infantil de 0 a 6 anos. **[validar lista]**
+- RN-18 Cada anúncio tem um nível de visibilidade (Grátis, Clássica, Megafone ou Outdoor). O nível Grátis segue o limite de 3 produtos definido em D12.
 - RN-14 Preço mínimo e máximo definidos pela plataforma. **[decidir valores]**
 - RN-15 Anúncio reservado ou vendido não pode ser editado nem excluído.
 - RN-16 Os primeiros anúncios de cada vendedor passam por análise antes de publicar.
@@ -295,11 +375,14 @@ Pendente (pedido pago) ──pedido concluído──▶ Liberado ──provedor 
 
 **Envio**
 - RN-30 Prazo de postagem: 3 dias úteis após o pagamento. Sem postagem, o pedido é cancelado e o comprador é reembolsado integralmente. **[decidir prazo]**
-- RN-31 O frete é cobrado do comprador pelo valor cotado, sem margem da plataforma. **[decidir]**
-- RN-32 O envio usa sempre a etiqueta gerada pela plataforma.
+- RN-31 O frete é cobrado pelo valor cotado nos Correios, sem margem da plataforma. Quando o comprador paga, o valor entra no total; quando o frete é grátis, o valor é descontado do repasse do vendedor.
+- RN-32 O envio usa sempre a etiqueta gerada pela plataforma, pelos Correios.
+- RN-33 Frete grátis só pode ser oferecido quando o frete estimado não ultrapassa o valor que o vendedor vai receber.
+- RN-34 Pedido com várias peças do mesmo vendedor tem um único frete; ele é grátis se todas as peças forem de frete grátis ou se o pedido passar do valor mínimo definido pelo vendedor.
 
 **Dinheiro**
-- RN-40 Comissão percentual sobre o preço da peça, descontada do vendedor; o frete não entra na base da comissão. **[decidir percentual e se há taxa fixa]**
+- RN-40 Comissão percentual sobre o preço da peça, conforme o nível de visibilidade ativo no momento do pagamento (Grátis 0%, Clássica 5%, Megafone 8%, Outdoor 10%), descontada do vendedor; o frete não entra na base da comissão.
+- RN-44 Valor a receber pelo vendedor = preço − comissão − frete (só quando o frete é grátis).
 - RN-41 O valor do vendedor é liberado quando o pedido é concluído (confirmação do comprador ou 7 dias após a entrega sem problema aberto).
 - RN-42 Problema aberto retém o valor até a decisão.
 - RN-43 Cancelamento antes do envio reembolsa o comprador integralmente, incluindo frete.
@@ -318,8 +401,9 @@ Pendente (pedido pago) ──pedido concluído──▶ Liberado ──provedor 
 - Página da peça com estado padronizado, medidas opcionais e simulação de frete.
 - Favoritos.
 - Carrinho agrupado por vendedor, checkout por vendedor, Pix e cartão.
+- Níveis de visibilidade com comissão correspondente e vitrines de destaque.
 - Pagamento intermediado com retenção e divisão automática.
-- Frete com cotação e etiqueta gerada pela plataforma, rastreio.
+- Frete pelos Correios com cotação, etiqueta gerada pela plataforma e rastreio; frete grátis ou pago pelo comprador.
 - Pedido com linha do tempo, mensagens do pedido, confirmação de recebimento.
 - Fluxo de problema com o pedido e mediação pela equipe.
 - Avaliação do vendedor.
@@ -396,7 +480,8 @@ Usuario (id, email, senha_hash, nome, telefone, email_confirmado_em, criado_em, 
 
 Anuncio (id, vendedor_id, titulo, descricao, categoria_id, tamanho_id, tamanho_etiqueta,
          genero, marca_id, cor, estacao, composicao, estado_conservacao, eh_lote, qtd_pecas_lote,
-         preco_centavos, pacote_padrao_id, status, reservado_ate, publicado_em, atualizado_em)
+         faixas_idade, completo, itens_faltantes, funcionando, preco_centavos, pacote_padrao_id,
+         nivel_visibilidade, frete_gratis, status, reservado_ate, publicado_em, atualizado_em)
   ├─ FotoAnuncio (anuncio_id, url, ordem, eh_foto_detalhe)
   ├─ MedidaAnuncio (anuncio_id, tipo, valor_cm)
   └─ PerguntaAnuncio (anuncio_id, autor_id, texto, resposta, status)
@@ -407,7 +492,8 @@ Favorito (usuario_id, anuncio_id)
 CarrinhoItem (usuario_id, anuncio_id, adicionado_em)
 
 Pedido (id, comprador_id, vendedor_id, endereco_entrega (cópia), status,
-        subtotal_centavos, frete_centavos, total_centavos, comissao_centavos, liquido_vendedor_centavos,
+        subtotal_centavos, frete_centavos, total_centavos, frete_pago_por (comprador|vendedor), nivel_visibilidade (cópia),
+        comissao_percentual (cópia), comissao_centavos, liquido_vendedor_centavos,
         prazo_postagem, entregue_em, concluido_em, criado_em)
   ├─ PedidoItem (pedido_id, anuncio_id, titulo (cópia), preco_centavos (cópia))
   ├─ HistoricoStatusPedido (pedido_id, de, para, motivo, autor, em)
@@ -421,7 +507,8 @@ Pedido (id, comprador_id, vendedor_id, endereco_entrega (cópia), status,
 Denuncia (alvo_tipo, alvo_id, autor_id, motivo, status)
 Notificacao (usuario_id, tipo, dados, lida_em)
 RegistroAuditoria (autor_id, acao, alvo, antes, depois, em)
-Configuracao (comissao_percentual, prazos, preco_min, preco_max, ...)
+PerfilVendedor também guarda: frete_gratis_acima_de_centavos, vendas_isentas_usadas
+Configuracao (comissao_por_nivel, limite_nivel_gratis, prazos, preco_min, preco_max, ...)
 ```
 
 Ponto importante: o pedido **copia** título, preço e endereço no momento da compra, para que edições posteriores não alterem o histórico.
@@ -476,19 +563,20 @@ Ponto importante: o pedido **copia** título, preço e endereço no momento da c
 
 **Bloqueiam o início do desenvolvimento do checkout e do financeiro:**
 1. Pagamento intermediado com retenção (D2) está aprovado? Há preferência de provedor?
-2. Frete com etiqueta gerada pela plataforma (D4) está aprovado? Entrega em mãos fica fora do MVP?
-3. Qual o percentual de comissão? Haverá taxa fixa por venda? Quem paga a comissão: só o vendedor (recomendado) ou também o comprador?
-4. Só pessoas físicas vendem no MVP?
+2. Nível Grátis: 3 anúncios ativos por vez (opção A) ou 3 primeiras vendas sem comissão (opção B, recomendada)? (D12)
+3. A tarifa do provedor de pagamento sai da comissão ou é repassada ao vendedor? (D2)
+4. Correios por contrato direto ou por intermediador de etiquetas? (D4)
 
 **Definem regras e telas:**
-5. Lançamento nacional ou recorte geográfico inicial?
-6. Calçados entram no MVP? Acessórios e enxoval ficam fora?
-7. A grade de tamanhos e a escala de estado de conservação propostas estão adequadas?
-8. Devolução por arrependimento: aceitar ou não (após orientação jurídica)?
-9. Perguntas públicas no anúncio entram no MVP?
-10. Prazos: postagem (3 dias úteis), conclusão automática (7 dias), reserva (15 minutos) e janela para relatar problema estão adequados?
-11. Preço mínimo e máximo por anúncio.
+5. O que cada nível de visibilidade entrega está de acordo com a proposta de D12?
+6. Frete grátis por anúncio, por valor mínimo de pedido, ou as duas formas? (D4)
+7. A lista de categorias, as restrições de segurança (D13) e a grade de tamanhos e faixas de idade (D7) estão adequadas?
+8. Lançamento nacional ou recorte geográfico inicial?
+9. Devolução por arrependimento: aceitar ou não (após orientação jurídica)?
+10. Perguntas públicas no anúncio entram no MVP?
+11. Prazos: postagem (3 dias úteis), conclusão automática (7 dias), reserva (15 minutos) e janela para relatar problema estão adequados?
+12. Preço mínimo e máximo por anúncio.
 
 **Podem esperar, mas convém pensar cedo:**
-12. Haverá curadoria de marcas ou qualquer marca é aceita?
-13. Quem forma a equipe de operação no início (moderação e atendimento) e quanto tempo por dia ela tem? Isso calibra o quanto automatizar desde já.
+13. Haverá curadoria de marcas ou qualquer marca é aceita?
+14. Quem forma a equipe de operação no início (moderação e atendimento) e quanto tempo por dia ela tem? Isso calibra o quanto automatizar desde já.
