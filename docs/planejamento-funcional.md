@@ -1,6 +1,6 @@
 # Cresce, Amor | Planejamento funcional do MVP
 
-> Versão 0.2, outubro de 2026. Documento de trabalho: as recomendações marcadas como **[decidir]** precisam de confirmação antes de virar código.
+> Versão 0.3, outubro de 2026. Documento de trabalho: as recomendações marcadas como **[decidir]** precisam de confirmação antes de virar código.
 
 ## Decisões já tomadas
 
@@ -8,9 +8,10 @@
 |---|---|---|
 | 12/10/2026 | Só **pessoas físicas** vendem. | P2, D1 |
 | 12/10/2026 | Escopo ampliado: **todo o universo infantil de 0 a 6 anos** (roupas, calçados, brinquedos, livros, enxoval, acessórios e itens de passeio), não só roupas. | P3, D13 |
-| 12/10/2026 | Frete pelos **Correios**, com a opção de **frete grátis** (pago pelo vendedor) ou **frete pago pelo comprador** na hora da compra. | D4 |
-| 12/10/2026 | Comissão por **nível de visibilidade**: Grátis (0%, limitado a 3 produtos), Clássica (5%), Megafone (8%) e Outdoor (10%). | D12 |
-| pendente | Pagamento intermediado com retenção. | D2 |
+| 12/10/2026 | Frete pelos **Correios**, pago pelo comprador na hora da compra. **Frete grátis ou reduzido** é um **brinde** que cada vendedor pode oferecer na sua loja, por conta dele. | D4 |
+| 12/10/2026 | Comissão por **nível de visibilidade**: Clássica (5%), Megafone (8%) e Outdoor (10%). As **3 primeiras vendas** de cada vendedor não pagam comissão (boas-vindas). | D12 |
+| 12/10/2026 | **Pagamento intermediado com retenção** aprovado. | D2 |
+| 12/10/2026 | A **tarifa do provedor de pagamento é descontada do vendedor**. | D2 |
 
 ## Sumário
 
@@ -20,14 +21,14 @@
 4. Perfis, papéis e permissões
 5. Jornada de compra
 6. Jornada de venda
-7. Pós-venda, problemas e disputas
-8. Ciclos de vida (máquinas de estado)
-9. Regras de negócio
-10. Escopo do MVP: dentro, depois e fora
-11. Arquitetura funcional e modelo de dados
-12. Inventário de telas
-13. Como saber se o MVP funcionou
-14. Riscos principais
+6. Pós-venda, problemas e disputas
+7. Ciclos de vida (máquinas de estado)
+8. Regras de negócio
+9. Escopo do MVP: dentro, depois e fora
+10. Arquitetura funcional e modelo de dados
+11. Inventário de telas
+12. Como saber se o MVP funcionou
+13. Riscos principais
 15. Perguntas em aberto, por prioridade
 
 ---
@@ -71,11 +72,11 @@ Um catálogo vazio afasta compradores; sem compradores, vendedores desistem. Rec
 | P6 | Compradores compram de diferentes vendedores. | **Confirmar formato** | Carrinho, checkout, frete, divisão do pagamento. | Ver decisão D3. |
 | P7 | Plataforma transmite confiança aos dois lados. | Firme como objetivo, **define custo** | Pagamento intermediado com retenção, política de problemas, moderação, avaliações. | Ver decisões D2, D6 e D9. |
 | P8 | Site responsivo, com app no futuro. | Firme | Arquitetura com API separada da interface desde o início. | — |
-| P9 | **(implícita)** A plataforma processa o pagamento. | **Confirmar com urgência** | Tudo que envolve dinheiro: checkout, repasse, comissão, reembolso. | Escolha do provedor de pagamento (D2). É a decisão que mais trava o resto. |
-| P10 | **(implícita)** A plataforma organiza o frete. | **Confirmado**: Correios, com frete grátis ou pago pelo comprador | Cálculo de frete, etiqueta, rastreio, prazos de postagem. | Falta escolher a forma de integração com os Correios (D4). |
-| P11 | **(implícita)** Há receita por comissão. | **Confirmado**: comissão por nível de visibilidade | Cálculo do repasse, tela financeira do vendedor, ordenação da busca. | Falta definir o que cada nível entrega e como funciona o nível Grátis (D12). |
+| P9 | **(implícita)** A plataforma processa o pagamento. | **Confirmado**: pagamento intermediado com retenção | Tudo que envolve dinheiro: checkout, repasse, comissão, reembolso. | Escolha do provedor de pagamento (D2). É a decisão que mais trava o resto. |
+| P10 | **(implícita)** A plataforma organiza o frete. | **Confirmado**: Correios, pago pelo comprador; frete grátis ou reduzido como brinde do vendedor | Cálculo de frete, etiqueta, rastreio, prazos de postagem. | Falta escolher a forma de integração com os Correios (D4). |
+| P11 | **(implícita)** Há receita por comissão. | **Confirmado**: comissão por nível de visibilidade | Cálculo do repasse, tela financeira do vendedor, ordenação da busca. | Falta validar o que cada nível entrega (D12). |
 
-**Bloqueadora que ainda falta:** P9 (pagamento). Nada de checkout, pedido ou financeiro antes dela.
+Todas as premissas bloqueadoras estão confirmadas. Falta escolher o provedor de pagamento e a forma de integração com os Correios, o que não muda as regras, só a implementação.
 
 ---
 
@@ -86,10 +87,10 @@ Um catálogo vazio afasta compradores; sem compradores, vendedores desistem. Rec
 **Por quê:** famílias que vendem também compram o tamanho seguinte; separar contas cria atrito e duplica cadastro.
 **Regra:** o vendedor não pode comprar o próprio anúncio.
 
-### D2. Pagamento intermediado com retenção
+### D2. Pagamento intermediado com retenção (decidido)
 **Em palavras simples:** o comprador paga à plataforma, não ao vendedor. A plataforma guarda o dinheiro enquanto a peça viaja e só repassa ao vendedor quando a peça chega e está como anunciada. Se não chegar ou chegar diferente, o dinheiro volta ao comprador. Funciona como um "cofre de confiança" entre duas famílias que não se conhecem.
 
-**Exemplo:** Ana compra um macacão de R$ 40 da Bia, com frete de R$ 22. Ana paga R$ 62 por Pix. A Bia é avisada, posta pelos Correios, Ana recebe e confirma. Só então a Bia recebe R$ 38 (R$ 40 menos 5% de comissão no nível Clássica). Se Ana não confirmar nem reclamar em 7 dias após a entrega, o valor é liberado do mesmo jeito.
+**Exemplo:** Ana compra um macacão de R$ 40 da Bia, com frete de R$ 22. Ana paga R$ 62 por Pix. A Bia é avisada, posta pelos Correios, Ana recebe e confirma. Só então a Bia recebe R$ 40 menos 5% de comissão (nível Clássica) e menos a tarifa do pagamento, ou seja, um pouco menos de R$ 38. Se fosse uma das 3 primeiras vendas da Bia, só a tarifa seria descontada. Se Ana não confirmar nem reclamar em 7 dias após a entrega, o valor é liberado do mesmo jeito.
 
 **Recomendação:** usar um provedor de pagamentos com **divisão automática do valor** entre plataforma e vendedor e **retenção até a liberação** (subcontas para o vendedor). O dinheiro do comprador fica retido e só é liberado ao vendedor quando:
 - o comprador confirma o recebimento, **ou**
@@ -99,7 +100,7 @@ Um catálogo vazio afasta compradores; sem compradores, vendedores desistem. Rec
 **Alternativa descartada para o MVP:** classificados (comprador paga direto ao vendedor). Mais simples, mas elimina a proteção ao comprador e a receita por comissão fica difícil de cobrar.
 **Implicação:** o vendedor precisa passar pela verificação de identidade exigida pelo provedor (CPF, dados bancários ou chave Pix). Isso entra na jornada de venda.
 **Métodos no MVP:** Pix e cartão de crédito. Boleto fica para depois (demora a compensar e complica a reserva da peça).
-**Taxa do provedor:** os provedores cobram uma tarifa por transação, em geral menor no Pix e maior no cartão. Essa tarifa sai da comissão da plataforma ou é repassada ao vendedor? **[decidir]** Com comissões de 0% a 10% (D12), absorver a tarifa pode deixar vendas no prejuízo, principalmente no nível Grátis e no cartão. Recomendação: a plataforma absorve a tarifa do Pix e o valor do cartão é tratado na simulação financeira antes do lançamento.
+**Tarifa do provedor (decidido):** os provedores cobram uma tarifa por transação, em geral menor no Pix e maior no cartão. Essa tarifa é **descontada do vendedor**, inclusive nas 3 vendas de boas-vindas. Como a tarifa muda conforme o comprador paga com Pix ou cartão, o vendedor vê no anúncio uma **estimativa** ("você recebe cerca de R$ X") e, no extrato, o valor exato de cada venda. As regras de venda e a página "Como funciona" explicam isso antes do primeiro anúncio.
 
 ### D3. Carrinho com vários vendedores, fechamento por vendedor
 **Recomendação para o MVP:** o carrinho aceita peças de vendedores diferentes, mas **aparece agrupado por vendedor**, e cada grupo é fechado em um checkout próprio, gerando **um pedido por vendedor**.
@@ -117,15 +118,21 @@ Recomendação: começar pelo intermediador e avaliar o contrato direto quando o
 **Dado necessário:** peso e dimensões do pacote. Para não pedir isso a cada anúncio, usar **pacotes padrão por categoria** (ex.: "body/camiseta", "conjunto", "casaco", "calçado", "brinquedo pequeno", "brinquedo médio") e somar para vários itens, com teto por envio.
 **Limites dos Correios:** há limite de peso e de tamanho por pacote. Produtos que não cabem nesse limite (berço, alguns carrinhos e cercadinhos) **não entram no MVP** ou exigem outra forma de entrega (ver D13).
 
-**Quem paga o frete (decidido: duas opções):**
-- **Frete pago pelo comprador:** o valor cotado é somado ao total na hora da compra.
-- **Frete grátis:** o comprador não paga frete; o custo é **descontado do valor que o vendedor recebe**.
+**Quem paga o frete (decidido):** o **comprador**, pelo valor cotado nos Correios, somado ao total na hora da compra.
 
-**Como o vendedor oferece frete grátis [decidir]:**
-- **Por anúncio:** o vendedor marca "frete grátis" ao publicar; o anúncio ganha selo e filtro próprio na busca.
-- **Por valor de pedido:** o vendedor define "frete grátis em pedidos acima de R$ X", o que estimula a compra de várias peças dele.
-Recomendação: oferecer as duas. Num pedido com várias peças do mesmo vendedor, o frete é grátis se **todas** forem de frete grátis ou se o pedido passar do valor definido; senão, o comprador paga um frete único pelo pacote.
-**Proteção do vendedor:** ao marcar frete grátis, o vendedor vê uma estimativa do frete e quanto vai sobrar para ele. O sistema não permite frete grátis quando a estimativa for maior que o valor a receber. O frete grátis só vale para regiões cujo frete estimado caiba nesse limite; fora disso, o comprador vê o frete cobrado. **[validar]**
+**Brinde de frete da loja (decidido):** cada vendedor tem a sua **loja** (o perfil público com todos os anúncios dele) e pode oferecer, como brinde, **frete grátis** ou **frete reduzido**. O custo do brinde é **descontado do valor que o vendedor recebe**.
+
+Configuração do brinde, feita uma vez na loja (proposta **[validar]**):
+- **Tipo:** frete grátis, ou desconto no frete (valor fixo em reais, ex.: "R$ 10 de desconto no frete").
+- **Condição:** em qualquer pedido, ou só em pedidos acima de R$ X. O pedido mínimo estimula a compra de várias peças da mesma loja, o que já é o objetivo do frete único.
+- **Ligar e desligar** a qualquer momento; vale para pedidos feitos a partir daí.
+
+Como aparece para o comprador:
+- Selo na loja e nos anúncios dela ("Frete grátis acima de R$ 80" / "R$ 10 de desconto no frete").
+- No carrinho: "faltam R$ 15 para ganhar o frete grátis desta loja".
+- No resumo da compra: frete cotado, desconto do brinde e frete final.
+
+**Proteção do vendedor:** o desconto do brinde **nunca passa do valor que o vendedor vai receber** naquele pedido. Se o frete de uma região distante for maior, o brinde cobre só até esse limite e o comprador paga a diferença. Ao configurar, o vendedor vê exemplos de quanto o frete costuma custar.
 
 **Entrega em mãos:** fora do MVP, porque não gera comprovante de entrega e enfraquece a proteção do comprador.
 
@@ -186,9 +193,8 @@ Bloqueio automático de telefone, e-mail e links nas mensagens, para manter a tr
 
 | Nível | Comissão | Limite | O que entrega (proposta **[decidir]**) |
 |---|---|---|---|
-| Grátis | 0% | 3 produtos | Aparece na busca e nas categorias normalmente, sem destaque. |
-| Clássica | 5% | sem limite | Igual ao Grátis, sem limite de anúncios. |
-| Megafone | 8% | sem limite | Aparece antes dos anúncios Grátis e Clássica nos resultados de busca e categoria, com selo de destaque. |
+| Clássica | 5% | sem limite | Aparece na busca e nas categorias normalmente, sem destaque. É o nível padrão. |
+| Megafone | 8% | sem limite | Aparece antes dos anúncios Clássica nos resultados de busca e categoria, com selo de destaque. |
 | Outdoor | 10% | sem limite | Tudo do Megafone, mais vitrine na página inicial e nas páginas de categoria. |
 
 **Regras propostas:**
@@ -197,12 +203,14 @@ Bloqueio automático de telefone, e-mail e links nas mensagens, para manter a tr
 - Anúncios em destaque são **sinalizados** como destaque para o comprador (transparência), e os resultados continuam respeitando os filtros escolhidos.
 - Para o destaque não virar bagunça, dentro de cada nível a ordem segue o critério escolhido pelo comprador (mais recentes, menor preço etc.).
 
-**O que precisa ser esclarecido no nível Grátis [decidir]:**
-- **Opção A — 3 anúncios ativos ao mesmo tempo:** o vendedor pode ter até 3 anúncios Grátis publicados; quando um vende, libera a vaga para outro. Atrai quem tem poucas peças e quer testar.
-- **Opção B — 3 vendas sem comissão por conta:** as 3 primeiras vendas de cada vendedor são isentas; depois, todo anúncio passa a ser Clássica ou acima. Funciona como boas-vindas.
-Recomendação: **opção B**. A opção A permite vender sem comissão para sempre, rodando 3 anúncios por vez, e a plataforma ainda paga a tarifa do provedor de pagamento nessas vendas.
+**Boas-vindas: 3 vendas sem comissão (decidido, opção B):**
+- As **3 primeiras vendas** de cada vendedor não pagam comissão. Só a tarifa do pagamento é descontada.
+- A isenção vale para a comissão **Clássica**. Se o vendedor escolher Megafone ou Outdoor, paga a diferença de visibilidade (3% ou 5%) já nessas vendas. **[validar]**
+- Conta a venda **concluída**; venda cancelada ou reembolsada devolve a vaga de isenção.
+- A isenção é por CPF, não por conta, para não ser reaproveitada com outra conta.
+- O painel do vendedor mostra quantas vendas de boas-vindas restam.
 
-**Ponto de atenção:** com comissões entre 0% e 10%, a receita por venda é pequena, e a tarifa do provedor de pagamento (D2) sai dela. Recomendação: fazer uma simulação simples (preço médio esperado × comissão − tarifa) antes do lançamento.
+**Ponto de atenção:** com a tarifa do pagamento descontada do vendedor, a comissão é receita líquida da plataforma, mas ainda pequena por venda (5% de uma peça barata). Recomendação: fazer uma simulação simples (vendas por mês × preço médio × comissão) para saber quantas vendas pagam os custos fixos.
 
 ### D13. Categorias do universo infantil e regras por tipo de produto
 **Decidido:** o catálogo cobre o universo infantil de 0 a 6 anos. Proposta de categorias e regras **[validar]**:
@@ -288,10 +296,10 @@ Legenda: 🔓 sem login · 🔐 exige login · ✅ validação · ⚠️ confirm
 | # | Etapa | O que acontece | Pontos de controle | Exceções e cuidados |
 |---|---|---|---|---|
 | 1 | Criar conta | Mesma conta do comprador. | ✅ e-mail confirmado ⚠️ aceite dos termos de uso e da política de privacidade | — |
-| 2 | Ativar perfil de vendedor | Dados exigidos: nome completo, CPF, data de nascimento, telefone celular, endereço de postagem (origem do frete), dados de recebimento (conta bancária ou chave Pix no mesmo CPF). Nome público e cidade aparecem no perfil; o resto não. | ✅ CPF válido e único na plataforma ✅ maioridade (18+) ✅ celular confirmado por código ✅ **verificação do provedor de pagamento** (subconta aprovada) ⚠️ aceite das regras de venda (estado de conservação, prazos de postagem, comissão) | Verificação pendente: pode criar anúncios como rascunho, mas não publicar. Verificação recusada: explicar o motivo e o caminho. |
+| 2 | Ativar perfil de vendedor (abrir a loja) | Nome da loja, foto ou ícone e, se quiser, o brinde de frete. Dados exigidos: nome completo, CPF, data de nascimento, telefone celular, endereço de postagem (origem do frete), dados de recebimento (conta bancária ou chave Pix no mesmo CPF). Nome público e cidade aparecem no perfil; o resto não. | ✅ CPF válido e único na plataforma ✅ maioridade (18+) ✅ celular confirmado por código ✅ **verificação do provedor de pagamento** (subconta aprovada) ⚠️ aceite das regras de venda (estado de conservação, prazos de postagem, comissão) | Verificação pendente: pode criar anúncios como rascunho, mas não publicar. Verificação recusada: explicar o motivo e o caminho. |
 | 3 | Cadastrar uma peça | Formulário guiado em etapas curtas. Rascunho salvo automaticamente. | 🔐 vendedor ativo | — |
 | 4 | Adicionar fotos | Mínimo 3 fotos (frente, costas, etiqueta), máximo 10. Foto obrigatória do detalhe quando o estado for "Usado, com detalhe". Dicas de luz e fundo na tela. | ✅ formato e tamanho de arquivo ✅ resolução mínima ✅ remoção de metadados ⚠️ declaração de que não há criança identificável na foto | Primeira foto vira capa; vendedor pode reordenar. |
-| 5 | Informar dados da peça | Categoria, tamanho (grade padronizada), tamanho da etiqueta, medidas (opcional), gênero/unissex, marca (lista com sugestão + "outra"), cor, estação, composição (opcional), estado de conservação (escala fechada), título, descrição, preço, pacote padrão para frete, **nível de visibilidade** (Grátis, Clássica, Megafone, Outdoor) e **frete grátis ou pago pelo comprador**. Para categorias fora do vestuário: faixa de idade, completo e funcionando. Indicação do valor que o vendedor vai receber, já descontadas a comissão e, se for o caso, a estimativa de frete. | ✅ campos obrigatórios por categoria ✅ limite do nível Grátis ✅ frete grátis só se couber no valor a receber ✅ preço entre mínimo e máximo da plataforma ✅ descrição obrigatória para "Usado, em bom estado" e "Usado, com detalhe" ✅ filtro de palavras proibidas e de contatos (telefone, e-mail, links) | Lote: informar quantidade de peças e garantir uma foto de cada. |
+| 5 | Informar dados da peça | Categoria, tamanho (grade padronizada), tamanho da etiqueta, medidas (opcional), gênero/unissex, marca (lista com sugestão + "outra"), cor, estação, composição (opcional), estado de conservação (escala fechada), título, descrição, preço, pacote padrão para frete, **nível de visibilidade** (Clássica, Megafone, Outdoor). Para categorias fora do vestuário: faixa de idade, completo e funcionando. Estimativa do valor que o vendedor vai receber, já descontadas a comissão e a tarifa do pagamento (avisando quando a venda entra nas 3 de boas-vindas). | ✅ campos obrigatórios por categoria ✅ preço entre mínimo e máximo da plataforma ✅ descrição obrigatória para "Usado, em bom estado" e "Usado, com detalhe" ✅ filtro de palavras proibidas e de contatos (telefone, e-mail, links) | Lote: informar quantidade de peças e garantir uma foto de cada. |
 | 6 | Publicar o anúncio | Revisão final em formato de prévia. | ⚠️ "Confirmo que a descrição corresponde à peça" ✅ moderação prévia para os primeiros anúncios | Anúncio reprovado: motivo claro e possibilidade de corrigir e reenviar. |
 | 7 | Gerenciar anúncios | Lista com abas: Ativos, Em análise, Rascunhos, Pausados, Vendidos, Reprovados. Ações: editar, pausar, reativar, excluir, responder perguntas. | 🔐 | Anúncio **reservado** ou **vendido** não pode ser editado nem excluído. Editar preço ou fotos de anúncio ativo pode voltar à análise **[decidir]**. Anúncios sem atualização há muito tempo: lembrete para revisar ou baixar preço (depois do MVP). |
 | 8 | Receber uma venda | Notificação (e-mail e no site) com itens, prazo de postagem e etiqueta disponível. | ✅ só depois da confirmação do pagamento pelo provedor | O vendedor **não escolhe aceitar ou recusar**: se não puder enviar, cancela (o que conta contra a reputação). |
@@ -359,7 +367,7 @@ Pendente (pedido pago) ──pedido concluído──▶ Liberado ──provedor 
 - RN-11 Mínimo de 3 fotos; foto do detalhe obrigatória no estado "Usado, com detalhe".
 - RN-12 Proibidas fotos com criança identificável.
 - RN-13 Itens não aceitos: roupa íntima usada, peças rasgadas ou com mancha grande, mofo ou odor, falsificações, itens que não funcionam, mamadeiras/bicos/chupetas usados, cadeirinhas de carro e bebê-conforto, móveis, itens que não cabem no limite dos Correios, produtos fora do universo infantil de 0 a 6 anos. **[validar lista]**
-- RN-18 Cada anúncio tem um nível de visibilidade (Grátis, Clássica, Megafone ou Outdoor). O nível Grátis segue o limite de 3 produtos definido em D12.
+- RN-18 Cada anúncio tem um nível de visibilidade (Clássica, Megafone ou Outdoor); o padrão é Clássica.
 - RN-14 Preço mínimo e máximo definidos pela plataforma. **[decidir valores]**
 - RN-15 Anúncio reservado ou vendido não pode ser editado nem excluído.
 - RN-16 Os primeiros anúncios de cada vendedor passam por análise antes de publicar.
@@ -375,14 +383,16 @@ Pendente (pedido pago) ──pedido concluído──▶ Liberado ──provedor 
 
 **Envio**
 - RN-30 Prazo de postagem: 3 dias úteis após o pagamento. Sem postagem, o pedido é cancelado e o comprador é reembolsado integralmente. **[decidir prazo]**
-- RN-31 O frete é cobrado pelo valor cotado nos Correios, sem margem da plataforma. Quando o comprador paga, o valor entra no total; quando o frete é grátis, o valor é descontado do repasse do vendedor.
+- RN-31 O frete é cobrado do comprador pelo valor cotado nos Correios, sem margem da plataforma.
 - RN-32 O envio usa sempre a etiqueta gerada pela plataforma, pelos Correios.
-- RN-33 Frete grátis só pode ser oferecido quando o frete estimado não ultrapassa o valor que o vendedor vai receber.
-- RN-34 Pedido com várias peças do mesmo vendedor tem um único frete; ele é grátis se todas as peças forem de frete grátis ou se o pedido passar do valor mínimo definido pelo vendedor.
+- RN-33 O vendedor pode oferecer na sua loja um brinde de frete (grátis ou desconto fixo), em qualquer pedido ou acima de um valor mínimo; o custo sai do valor que ele recebe.
+- RN-34 Pedido com várias peças do mesmo vendedor tem um único frete, e o brinde é aplicado sobre ele.
+- RN-35 O desconto do brinde nunca ultrapassa o valor que o vendedor vai receber no pedido; a diferença fica com o comprador.
 
 **Dinheiro**
-- RN-40 Comissão percentual sobre o preço da peça, conforme o nível de visibilidade ativo no momento do pagamento (Grátis 0%, Clássica 5%, Megafone 8%, Outdoor 10%), descontada do vendedor; o frete não entra na base da comissão.
-- RN-44 Valor a receber pelo vendedor = preço − comissão − frete (só quando o frete é grátis).
+- RN-40 Comissão percentual sobre o preço da peça, conforme o nível de visibilidade ativo no momento do pagamento (Clássica 5%, Megafone 8%, Outdoor 10%), descontada do vendedor; o frete não entra na base da comissão.
+- RN-44 Valor a receber pelo vendedor = preço − comissão − tarifa do pagamento − brinde de frete (quando houver).
+- RN-45 As 3 primeiras vendas concluídas de cada CPF não pagam a comissão Clássica; a tarifa do pagamento é descontada normalmente.
 - RN-41 O valor do vendedor é liberado quando o pedido é concluído (confirmação do comprador ou 7 dias após a entrega sem problema aberto).
 - RN-42 Problema aberto retém o valor até a decisão.
 - RN-43 Cancelamento antes do envio reembolsa o comprador integralmente, incluindo frete.
@@ -403,7 +413,8 @@ Pendente (pedido pago) ──pedido concluído──▶ Liberado ──provedor 
 - Carrinho agrupado por vendedor, checkout por vendedor, Pix e cartão.
 - Níveis de visibilidade com comissão correspondente e vitrines de destaque.
 - Pagamento intermediado com retenção e divisão automática.
-- Frete pelos Correios com cotação, etiqueta gerada pela plataforma e rastreio; frete grátis ou pago pelo comprador.
+- Frete pelos Correios com cotação, etiqueta gerada pela plataforma e rastreio; brinde de frete grátis ou reduzido configurado pela loja.
+- 3 vendas de boas-vindas sem comissão.
 - Pedido com linha do tempo, mensagens do pedido, confirmação de recebimento.
 - Fluxo de problema com o pedido e mediação pela equipe.
 - Avaliação do vendedor.
@@ -481,7 +492,7 @@ Usuario (id, email, senha_hash, nome, telefone, email_confirmado_em, criado_em, 
 Anuncio (id, vendedor_id, titulo, descricao, categoria_id, tamanho_id, tamanho_etiqueta,
          genero, marca_id, cor, estacao, composicao, estado_conservacao, eh_lote, qtd_pecas_lote,
          faixas_idade, completo, itens_faltantes, funcionando, preco_centavos, pacote_padrao_id,
-         nivel_visibilidade, frete_gratis, status, reservado_ate, publicado_em, atualizado_em)
+         nivel_visibilidade, status, reservado_ate, publicado_em, atualizado_em)
   ├─ FotoAnuncio (anuncio_id, url, ordem, eh_foto_detalhe)
   ├─ MedidaAnuncio (anuncio_id, tipo, valor_cm)
   └─ PerguntaAnuncio (anuncio_id, autor_id, texto, resposta, status)
@@ -492,7 +503,8 @@ Favorito (usuario_id, anuncio_id)
 CarrinhoItem (usuario_id, anuncio_id, adicionado_em)
 
 Pedido (id, comprador_id, vendedor_id, endereco_entrega (cópia), status,
-        subtotal_centavos, frete_centavos, total_centavos, frete_pago_por (comprador|vendedor), nivel_visibilidade (cópia),
+        subtotal_centavos, frete_centavos, total_centavos, frete_cotado_centavos, brinde_frete_centavos, tarifa_pagamento_centavos, isento_boas_vindas,
+        nivel_visibilidade (cópia),
         comissao_percentual (cópia), comissao_centavos, liquido_vendedor_centavos,
         prazo_postagem, entregue_em, concluido_em, criado_em)
   ├─ PedidoItem (pedido_id, anuncio_id, titulo (cópia), preco_centavos (cópia))
@@ -507,8 +519,9 @@ Pedido (id, comprador_id, vendedor_id, endereco_entrega (cópia), status,
 Denuncia (alvo_tipo, alvo_id, autor_id, motivo, status)
 Notificacao (usuario_id, tipo, dados, lida_em)
 RegistroAuditoria (autor_id, acao, alvo, antes, depois, em)
-PerfilVendedor também guarda: frete_gratis_acima_de_centavos, vendas_isentas_usadas
-Configuracao (comissao_por_nivel, limite_nivel_gratis, prazos, preco_min, preco_max, ...)
+PerfilVendedor também guarda: nome_loja, brinde_frete_tipo (nenhum|gratis|desconto), brinde_frete_valor_centavos,
+  brinde_frete_pedido_minimo_centavos, vendas_boas_vindas_usadas (contadas por CPF)
+Configuracao (comissao_por_nivel, vendas_boas_vindas, prazos, preco_min, preco_max, ...)
 ```
 
 Ponto importante: o pedido **copia** título, preço e endereço no momento da compra, para que edições posteriores não alterem o histórico.
@@ -517,7 +530,7 @@ Ponto importante: o pedido **copia** título, preço e endereço no momento da c
 
 ## 12. Inventário de telas
 
-**Públicas:** Início · Como funciona · Compra protegida · Regras para anunciar · Resultado de busca/categoria · Página da peça · Perfil público do vendedor · Ajuda · Termos · Privacidade.
+**Públicas:** Início · Como funciona · Compra protegida · Regras para anunciar · Resultado de busca/categoria · Página da peça · Loja do vendedor (perfil público) · Ajuda · Termos · Privacidade.
 
 **Conta:** Entrar · Criar conta · Confirmar e-mail · Recuperar senha · Meus dados · Endereços · Favoritos · Notificações.
 
@@ -562,21 +575,20 @@ Ponto importante: o pedido **copia** título, preço e endereço no momento da c
 ## 15. Perguntas em aberto, por prioridade
 
 **Bloqueiam o início do desenvolvimento do checkout e do financeiro:**
-1. Pagamento intermediado com retenção (D2) está aprovado? Há preferência de provedor?
-2. Nível Grátis: 3 anúncios ativos por vez (opção A) ou 3 primeiras vendas sem comissão (opção B, recomendada)? (D12)
-3. A tarifa do provedor de pagamento sai da comissão ou é repassada ao vendedor? (D2)
-4. Correios por contrato direto ou por intermediador de etiquetas? (D4)
+1. Há preferência de provedor de pagamento? (D2)
+2. Correios por contrato direto ou por intermediador de etiquetas? (D4)
+3. Nas vendas de boas-vindas com Megafone ou Outdoor, o vendedor paga só a diferença de visibilidade? (D12)
+4. O brinde de frete proposto (grátis ou desconto fixo, com pedido mínimo opcional) atende? (D4)
 
 **Definem regras e telas:**
 5. O que cada nível de visibilidade entrega está de acordo com a proposta de D12?
-6. Frete grátis por anúncio, por valor mínimo de pedido, ou as duas formas? (D4)
-7. A lista de categorias, as restrições de segurança (D13) e a grade de tamanhos e faixas de idade (D7) estão adequadas?
-8. Lançamento nacional ou recorte geográfico inicial?
-9. Devolução por arrependimento: aceitar ou não (após orientação jurídica)?
-10. Perguntas públicas no anúncio entram no MVP?
-11. Prazos: postagem (3 dias úteis), conclusão automática (7 dias), reserva (15 minutos) e janela para relatar problema estão adequados?
-12. Preço mínimo e máximo por anúncio.
+6. A lista de categorias, as restrições de segurança (D13) e a grade de tamanhos e faixas de idade (D7) estão adequadas?
+7. Lançamento nacional ou recorte geográfico inicial?
+8. Devolução por arrependimento: aceitar ou não (após orientação jurídica)?
+9. Perguntas públicas no anúncio entram no MVP?
+10. Prazos: postagem (3 dias úteis), conclusão automática (7 dias), reserva (15 minutos) e janela para relatar problema estão adequados?
+11. Preço mínimo e máximo por anúncio.
 
 **Podem esperar, mas convém pensar cedo:**
-13. Haverá curadoria de marcas ou qualquer marca é aceita?
-14. Quem forma a equipe de operação no início (moderação e atendimento) e quanto tempo por dia ela tem? Isso calibra o quanto automatizar desde já.
+12. Haverá curadoria de marcas ou qualquer marca é aceita?
+13. Quem forma a equipe de operação no início (moderação e atendimento) e quanto tempo por dia ela tem? Isso calibra o quanto automatizar desde já.
