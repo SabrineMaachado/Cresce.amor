@@ -8,3 +8,5 @@ Fase atual: **definição funcional do produto**. Ainda não há código.
 
 - [Planejamento funcional (MVP)](docs/planejamento-funcional.md)
 - [Estudo: como o Enjoei trabalha](docs/estudo-enjoei.md)
+- [Estudo: fornecedores de pagamento e de etiquetas](docs/estudo-fornecedores-pagamento-e-frete.md)
+- [Estudo: Cresci e Perdi](docs/estudo-cresci-e-perdi.md)

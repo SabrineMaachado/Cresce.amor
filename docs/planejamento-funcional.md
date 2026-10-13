@@ -1,6 +1,6 @@
 # Cresce, Amor | Planejamento funcional do MVP
 
-> Versão 0.3, outubro de 2026. Documento de trabalho: as recomendações marcadas como **[decidir]** precisam de confirmação antes de virar código.
+> Versão 0.4, outubro de 2026. Documento de trabalho: as recomendações marcadas como **[decidir]** precisam de confirmação antes de virar código.
 
 ## Decisões já tomadas
 
@@ -12,6 +12,10 @@
 | 12/10/2026 | Comissão por **nível de visibilidade**: Clássica (5%), Megafone (8%) e Outdoor (10%). As **3 primeiras vendas** de cada vendedor não pagam comissão (boas-vindas). | D12 |
 | 12/10/2026 | **Pagamento intermediado com retenção** aprovado. | D2 |
 | 12/10/2026 | A **tarifa do provedor de pagamento é descontada do vendedor**. | D2 |
+| 13/10/2026 | Nomes dos níveis mantidos: **Clássica, Megafone e Outdoor**. | D12 |
+| 13/10/2026 | As **3 primeiras vendas** não pagam comissão **em qualquer nível**. | D12 |
+| 13/10/2026 | Métodos de pagamento: **cartão de crédito, Pix e boleto**. Provedor recomendado: **Asaas** (ver estudo de fornecedores). | D2 |
+| 13/10/2026 | Frete por **serviço de etiquetas** (recomendado: **Melhor Envio**), sem contrato direto com os Correios no MVP. | D4 |
 
 ## Sumário
 
@@ -99,7 +103,13 @@ Todas as premissas bloqueadoras estão confirmadas. Falta escolher o provedor de
 **Por quê:** é o principal elemento de confiança para quem compra e evita que a plataforma tenha que repassar dinheiro manualmente.
 **Alternativa descartada para o MVP:** classificados (comprador paga direto ao vendedor). Mais simples, mas elimina a proteção ao comprador e a receita por comissão fica difícil de cobrar.
 **Implicação:** o vendedor precisa passar pela verificação de identidade exigida pelo provedor (CPF, dados bancários ou chave Pix). Isso entra na jornada de venda.
-**Métodos no MVP:** Pix e cartão de crédito. Boleto fica para depois (demora a compensar e complica a reserva da peça).
+**Métodos no MVP (decidido):** cartão de crédito, Pix e boleto.
+- **Pix:** confirmação na hora; reserva da peça pelo prazo de validade do código (sugestão: 30 minutos).
+- **Cartão:** confirmação na hora; à vista no MVP, parcelamento depois **[decidir]**.
+- **Boleto:** compensa em até 3 dias úteis após o pagamento. A peça fica reservada até o vencimento (sugestão: 1 dia útil) mais o prazo de compensação; se não for paga, o pedido é cancelado e a peça volta ao catálogo. A tarifa do boleto é fixa e pesa em compras baratas, por isso o boleto só aparece em pedidos acima de um valor mínimo **[decidir valor]**.
+- O prazo de postagem do vendedor só começa a contar quando o pagamento é confirmado.
+
+**Provedor recomendado: Asaas** (comparação em [estudo de fornecedores](estudo-fornecedores-pagamento-e-frete.md)). Tem subcontas para pessoa física criadas pela própria plataforma, divisão automática do pagamento e a **Conta Escrow**, que segura o valor do vendedor até a plataforma liberar ou até um prazo, exatamente o modelo de retenção deste documento.
 **Tarifa do provedor (decidido):** os provedores cobram uma tarifa por transação, em geral menor no Pix e maior no cartão. Essa tarifa é **descontada do vendedor**, inclusive nas 3 vendas de boas-vindas. Como a tarifa muda conforme o comprador paga com Pix ou cartão, o vendedor vê no anúncio uma **estimativa** ("você recebe cerca de R$ X") e, no extrato, o valor exato de cada venda. As regras de venda e a página "Como funciona" explicam isso antes do primeiro anúncio.
 
 ### D3. Carrinho com vários vendedores, fechamento por vendedor
@@ -110,10 +120,8 @@ Todas as premissas bloqueadoras estão confirmadas. Falta escolher o provedor de
 
 ### D4. Frete pelos Correios, com etiqueta gerada pela plataforma
 **Decidido:** envio pelos Correios (PAC e SEDEX). Na compra, o comprador vê as opções com preço e prazo; após o pagamento, o vendedor recebe a **etiqueta pronta** para imprimir e postar.
-**Forma de integração [decidir]:**
-- **Contrato direto da plataforma com os Correios:** exige CNPJ da plataforma e contrato comercial; dá acesso às tabelas de contrato.
-- **Por um intermediador de etiquetas** que emite etiquetas dos Correios: começa mais rápido, sem contrato próprio, e já entrega cotação, etiqueta e rastreio prontos.
-Recomendação: começar pelo intermediador e avaliar o contrato direto quando o volume justificar.
+**Forma de integração (decidido): serviço de etiquetas**, sem contrato direto com os Correios no MVP. Recomendado: **Melhor Envio** (comparação no [estudo de fornecedores](estudo-fornecedores-pagamento-e-frete.md)). A plataforma emite e paga a etiqueta pela própria conta, com o vendedor como remetente (nome, CPF e endereço), e o envio vai com **declaração de conteúdo eletrônica**, já que pessoa física vendendo itens usados não emite nota fiscal. O custo da etiqueta já foi cobrado do comprador no frete (ou descontado do vendedor no brinde).
+
 **Por quê:** o vendedor não precisa calcular nada, o rastreio entra no sistema automaticamente e a plataforma sabe quando a peça foi postada e entregue (o que alimenta a liberação do pagamento).
 **Dado necessário:** peso e dimensões do pacote. Para não pedir isso a cada anúncio, usar **pacotes padrão por categoria** (ex.: "body/camiseta", "conjunto", "casaco", "calçado", "brinquedo pequeno", "brinquedo médio") e somar para vários itens, com teto por envio.
 **Limites dos Correios:** há limite de peso e de tamanho por pacote. Produtos que não cabem nesse limite (berço, alguns carrinhos e cercadinhos) **não entram no MVP** ou exigem outra forma de entrega (ver D13).
@@ -139,7 +147,7 @@ Como aparece para o comprador:
 ### D5. Um anúncio = uma peça (ou um lote fechado)
 - Quantidade sempre 1.
 - **Lote** é permitido como um único anúncio com várias peças do mesmo tamanho (ex.: "5 bodies 3–6 meses"), com fotos de todas. Vende tudo junto.
-- Ao iniciar o pagamento, a peça fica **reservada** por um tempo curto (sugestão: 15 minutos para cartão, validade do Pix para Pix). Se o pagamento não se confirmar, a peça volta a ficar disponível.
+- Ao iniciar o pagamento, a peça fica **reservada** por um tempo curto (cartão: alguns minutos até a resposta; Pix: validade do código; boleto: vencimento mais compensação, ver D2). Se o pagamento não se confirmar, a peça volta a ficar disponível.
 - Adicionar ao carrinho **não reserva**. O carrinho avisa quando uma peça foi vendida a outra pessoa.
 
 ### D6. Moderação de anúncios
@@ -205,7 +213,7 @@ Bloqueio automático de telefone, e-mail e links nas mensagens, para manter a tr
 
 **Boas-vindas: 3 vendas sem comissão (decidido, opção B):**
 - As **3 primeiras vendas** de cada vendedor não pagam comissão. Só a tarifa do pagamento é descontada.
-- A isenção vale para a comissão **Clássica**. Se o vendedor escolher Megafone ou Outdoor, paga a diferença de visibilidade (3% ou 5%) já nessas vendas. **[validar]**
+- A isenção vale para **qualquer nível**: nas 3 primeiras vendas, Clássica, Megafone e Outdoor ficam sem comissão (decidido).
 - Conta a venda **concluída**; venda cancelada ou reembolsada devolve a vaga de isenção.
 - A isenção é por CPF, não por conta, para não ser reaproveitada com outra conta.
 - O painel do vendedor mostra quantas vendas de boas-vindas restam.
@@ -282,7 +290,7 @@ Legenda: 🔓 sem login · 🔐 exige login · ✅ validação · ⚠️ confirm
 | 6 | Adicionar ao carrinho ou comprar agora | Carrinho agrupado por vendedor; "comprar agora" vai direto ao checkout daquele vendedor. | 🔓 (carrinho local) | Peça vendida a outra pessoa: aviso no carrinho e remoção. Bloqueio de compra do próprio anúncio. |
 | 7 | Identificar-se | Entrar ou criar conta (e-mail e senha ou login social). Carrinho local migra para a conta. | 🔐 ✅ e-mail confirmado antes do pagamento (código por e-mail) | Recomendação: confirmação por código no próprio fluxo, sem sair do checkout. |
 | 8 | Endereço de entrega | Selecionar endereço salvo ou cadastrar novo (busca por CEP preenche rua e cidade). Recalcula o frete. | 🔐 ✅ CEP, número, destinatário | CPF do comprador é pedido aqui (exigido pelo provedor de pagamento e pela etiqueta). |
-| 9 | Escolher frete e pagamento | Opções de frete com preço e prazo. Pix ou cartão. Resumo: itens + frete = total. | 🔐 ✅ dados do cartão validados pelo provedor | A comissão da plataforma **não** é cobrada do comprador (recomendação; ver P11). |
+| 9 | Escolher frete e pagamento | Opções de frete com preço e prazo. Cartão, Pix ou boleto (boleto só acima do valor mínimo). Resumo: itens + frete = total. | 🔐 ✅ dados do cartão validados pelo provedor | A comissão da plataforma **não** é cobrada do comprador (recomendação; ver P11). |
 | 10 | Confirmar a compra | Botão "Confirmar e pagar" após resumo com itens, endereço, frete, total e link para as regras de compra protegida. | ⚠️ aceite das regras na primeira compra ✅ **revalidar disponibilidade e preço** no momento da confirmação; peça entra em **reserva** | Reserva expira sem pagamento: pedido cancelado automaticamente e peça volta ao catálogo. Pagamento recusado: permanecer no checkout com mensagem clara. |
 | 11 | Pagamento aprovado | Pedido passa a "Pago". Comprador e vendedor são notificados. Anúncio sai do catálogo como "vendido". | ✅ confirmação vem do **provedor de pagamento** (aviso automático), nunca da tela do comprador | Pix pago depois da expiração da reserva e peça já vendida: reembolso automático. |
 | 12 | Acompanhar o pedido | Linha do tempo: pago → enviado (com rastreio) → entregue. Mensagens com o vendedor dentro do pedido. | 🔐 | Vendedor não posta no prazo: cancelamento automático com reembolso integral (ver RN-30). |
@@ -377,7 +385,7 @@ Pendente (pedido pago) ──pedido concluído──▶ Liberado ──provedor 
 - RN-20 O vendedor não pode comprar o próprio anúncio.
 - RN-21 Cada checkout contém peças de um único vendedor e gera um pedido.
 - RN-22 Disponibilidade e preço são revalidados no momento da confirmação.
-- RN-23 A peça é reservada ao iniciar o pagamento; a reserva expira se o pagamento não for confirmado no prazo.
+- RN-23 A peça é reservada ao iniciar o pagamento; a reserva expira se o pagamento não for confirmado no prazo de cada método (ver D2).
 - RN-24 Só a confirmação do provedor de pagamento muda um pedido para "Pago".
 - RN-25 Pagamento confirmado para peça que já não está disponível gera reembolso automático.
 
@@ -392,7 +400,7 @@ Pendente (pedido pago) ──pedido concluído──▶ Liberado ──provedor 
 **Dinheiro**
 - RN-40 Comissão percentual sobre o preço da peça, conforme o nível de visibilidade ativo no momento do pagamento (Clássica 5%, Megafone 8%, Outdoor 10%), descontada do vendedor; o frete não entra na base da comissão.
 - RN-44 Valor a receber pelo vendedor = preço − comissão − tarifa do pagamento − brinde de frete (quando houver).
-- RN-45 As 3 primeiras vendas concluídas de cada CPF não pagam a comissão Clássica; a tarifa do pagamento é descontada normalmente.
+- RN-45 As 3 primeiras vendas concluídas de cada CPF não pagam comissão, em qualquer nível de visibilidade; a tarifa do pagamento é descontada normalmente.
 - RN-41 O valor do vendedor é liberado quando o pedido é concluído (confirmação do comprador ou 7 dias após a entrega sem problema aberto).
 - RN-42 Problema aberto retém o valor até a decisão.
 - RN-43 Cancelamento antes do envio reembolsa o comprador integralmente, incluindo frete.
@@ -410,7 +418,7 @@ Pendente (pedido pago) ──pedido concluído──▶ Liberado ──provedor 
 - Catálogo com busca, categorias, filtros (com tamanho como filtro principal e memorizado) e ordenação.
 - Página da peça com estado padronizado, medidas opcionais e simulação de frete.
 - Favoritos.
-- Carrinho agrupado por vendedor, checkout por vendedor, Pix e cartão.
+- Carrinho agrupado por vendedor, checkout por vendedor, cartão, Pix e boleto.
 - Níveis de visibilidade com comissão correspondente e vitrines de destaque.
 - Pagamento intermediado com retenção e divisão automática.
 - Frete pelos Correios com cotação, etiqueta gerada pela plataforma e rastreio; brinde de frete grátis ou reduzido configurado pela loja.
@@ -575,9 +583,9 @@ Ponto importante: o pedido **copia** título, preço e endereço no momento da c
 ## 15. Perguntas em aberto, por prioridade
 
 **Bloqueiam o início do desenvolvimento do checkout e do financeiro:**
-1. Há preferência de provedor de pagamento? (D2)
-2. Correios por contrato direto ou por intermediador de etiquetas? (D4)
-3. Nas vendas de boas-vindas com Megafone ou Outdoor, o vendedor paga só a diferença de visibilidade? (D12)
+1. Confirmar com o Asaas e o Melhor Envio, em conversa comercial, os pontos listados no estudo de fornecedores (custos, escrow com cartão, etiqueta em nome de terceiros).
+2. Valor mínimo de pedido para aceitar boleto e parcelamento no cartão (sim ou não). (D2)
+3. Nas 3 vendas sem comissão, a tarifa do pagamento continua descontada do vendedor? (D12)
 4. O brinde de frete proposto (grátis ou desconto fixo, com pedido mínimo opcional) atende? (D4)
 
 **Definem regras e telas:**

@@ -67,7 +67,7 @@ Regra de cupons: num pedido com vários itens, só o melhor cupom é aplicado (s
 ## 6. O que levar para o Cresce, Amor
 
 1. **Já alinhado com o Enjoei:** pagamento com retenção, etiqueta gerada pela plataforma, carrinho por vendedor, isenção de comissão para vendedores novos (nossas 3 vendas de boas-vindas), níveis de visibilidade com comissões diferentes.
-2. **Nomes dos níveis:** "Megafone" é o nome de uma ferramenta do Enjoei, e "Grátis/Clássico" também aparecem lá. Recomendação: criar nomes próprios para os níveis, ligados à marca (crescimento, cuidado). Isso diferencia o Cresce, Amor e evita parecer cópia. **[decidir]**
+2. **Nomes dos níveis:** "Megafone" é o nome de uma ferramenta do Enjoei. Decisão de 13/10/2026: manter Clássica, Megafone e Outdoor.
 3. **Desconto progressivo da loja** (inspirado na sacolinha turbinada): como mais um tipo de brinde, a loja pode oferecer "leve 3, ganhe 10%". Combina com o frete único por vendedor e ajuda a resolver o problema do frete caro em peças baratas. Sugestão para a fase 2.
 4. **Sugestão de preço**, nunca preço automático. Fase 2, quando houver histórico de vendas.
 5. **Campanhas da plataforma** com orçamento fechado: cupom de primeira compra e datas sazonais da infância (volta às aulas, Dia das Crianças, troca de estação). Definir antes quanto a plataforma pode bancar por mês.
